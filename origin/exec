@@ -1,0 +1,18 @@
+#!/bin/sh
+
+system=`uname -s`
+nrandom=`date '+%d%H%M%S'`
+nseed_runtime=8197263
+
+make
+cp input.ampt ana/
+echo "#  AMPT started at " `date` > start.time
+./ampt < nseed_runtime > nohup.out
+uname -n >> nohup.out
+cat start.time >> nohup.out
+rm -f start.time
+echo "#  AMPT Program finished at " `date` >> nohup.out
+echo "#  AMPT Program finished at " `date` 
+
+
+
