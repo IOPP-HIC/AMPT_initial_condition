@@ -23,7 +23,7 @@ def copyfile(eventID=0, dest='/DATA/data02/miaoheng/data/Ini_XeXe_5440/data0'):
     with open('exec', 'r') as f:
         fexec = f.read()
     ran = randn()
-    fexec = re.sub(r'nseed_runtime=\d+', f'nseed_runtime={ran}', fexec)
+    fexec = re.sub(r'nseed_byuser=\d+', f'nseed_byuser={ran}', fexec)
     try:
         with open('exec', 'w') as f:
             f.write(fexec)
@@ -33,9 +33,9 @@ def copyfile(eventID=0, dest='/DATA/data02/miaoheng/data/Ini_XeXe_5440/data0'):
     with open('input.ampt', 'r') as f:
         finpu = f.read()
     ran1 = randn()
-    finpu = re.sub(r'8\t\t! random seed for parton cascade',
+    finpu = re.sub(r'8\s+! random seed for parton cascade',
                    f'{ran1}  ! random seed for parton cascade', finpu)
-    finpu = re.sub(r'53153523\t! random seed for HIJING',
+    finpu = re.sub(r'53153523\s+! random seed for HIJING',
                    f'{randn()}  ! random seed for HIJING', finpu)
     with open('input.ampt', 'w') as f:
         f.write(finpu)
@@ -44,7 +44,7 @@ def copyfile(eventID=0, dest='/DATA/data02/miaoheng/data/Ini_XeXe_5440/data0'):
 def modseed():
     with open('exec', 'r') as f:
         lines = f.readlines()
-    lines[4] = f"nseed_runtime={randn()}\n"
+    lines[4] = f"nseed_byuser={randn()}\n"
     with open('exec', 'w') as f:
         f.writelines(lines)
     

@@ -1,9 +1,10 @@
 #!/bin/sh
 
 system=`uname -s`
-nrandom=`date '+%d%H%M%S'`
-nseed_runtime=8197263
+nseed_byuser=111111
+echo ${nseed_byuser} > nseed_runtime
 
+# rm -f *.o
 make
 cp input.ampt ana/
 echo "#  AMPT started at " `date` > start.time
